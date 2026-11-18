@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>You read it. Now tell me what landed. | Modern L&D In A Digital Age</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green: #1E4A1A;
+    --mint: #6ECFB0;
+    --yellow: #FFE600;
+    --pink: #ED93B1;
+    --bg: #F3F7F4;
+    --text: #1a2e1a;
+    --light-text: #4a6349;
+    --white: #ffffff;
+    --card-bg: #ffffff;
+    --border: #d4e8d4;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Poppins', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+  }
+
+  /* ── HEADER ── */
+  .header {
+    background: var(--green);
+    padding: 2.5rem 2rem 2rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .header::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 220px; height: 220px;
+    background: var(--mint);
+    opacity: 0.12;
+    border-radius: 50%;
+  }
+  .header::after {
+    content: '';
+    position: absolute;
+    bottom: -40px; left: -40px;
+    width: 160px; height: 160px;
+    background: var(--yellow);
+    opacity: 0.10;
+    border-radius: 50%;
+  }
+  .logo-line {
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    color: var(--mint);
+    text-transform: uppercase;
+    margin-bottom: 1.2rem;
+  }
+  .header h1 {
+    font-family: 'Lora', serif;
+    font-size: clamp(1.6rem, 4vw, 2.4rem);
+    font-weight: 600;
+    color: var(--white);
+    line-height: 1.25;
+    max-width: 640px;
+    margin: 0 auto 0.75rem;
+  }
+  .header h1 em {
+    font-style: italic;
+    color: var(--yellow);
+  }
+  .header-sub {
+    font-size: 0.95rem;
+    font-weight: 300;
+    color: rgba(255,255,255,0.75);
+    max-width: 480px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+
+  /* ── THANK YOU STRIP ── */
+  .thank-strip {
+    background: var(--mint);
+    padding: 1.4rem 2rem;
+    text-align: center;
+  }
+  .thank-strip p {
+    font-family: 'Lora', serif;
+    font-size: clamp(1rem, 2.2vw, 1.2rem);
+    font-style: italic;
+    color: var(--green);
+    max-width: 620px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+
+  /* ── MAIN CONTENT ── */
+  .main {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 4rem;
+  }
+
+  .section-label {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    color: var(--mint);
+    text-transform: uppercase;
+    margin-bottom: 0.6rem;
+  }
+
+  .intro-block {
+    margin-bottom: 2.8rem;
+  }
+  .intro-block p {
+    font-size: 1rem;
+    line-height: 1.75;
+    color: var(--light-text);
+    max-width: 600px;
+  }
+
+  /* ── FORM ── */
+  .form-card {
+    background: var(--card-bg);
+    border: 1.5px solid var(--border);
+    border-radius: 12px;
+    padding: 2.4rem 2rem;
+    margin-bottom: 2.4rem;
+  }
+
+  .form-card h2 {
+    font-family: 'Lora', serif;
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--green);
+    margin-bottom: 1.8rem;
+    line-height: 1.35;
+  }
+
+  .field {
+    margin-bottom: 1.6rem;
+  }
+  .field label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--text);
+    margin-bottom: 0.5rem;
+  }
+  .field input,
+  .field select,
+  .field textarea {
+    width: 100%;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.9rem;
+    color: var(--text);
+    background: var(--bg);
+    border: 1.5px solid var(--border);
+    border-radius: 8px;
+    padding: 0.75rem 1rem;
+    transition: border-color 0.2s;
+    outline: none;
+    resize: vertical;
+  }
+  .field input:focus,
+  .field select:focus,
+  .field textarea:focus {
+    border-color: var(--mint);
+  }
+  .field textarea { min-height: 100px; }
+
+  .chapter-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.6rem;
+  }
+  @media (max-width: 520px) {
+    .chapter-grid { grid-template-columns: 1fr; }
+  }
+  .chapter-option {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+    background: var(--bg);
+    border: 1.5px solid var(--border);
+    border-radius: 8px;
+    padding: 0.75rem 0.9rem;
+    cursor: pointer;
+    transition: border-color 0.2s, background 0.2s;
+    font-size: 0.82rem;
+    line-height: 1.4;
+    color: var(--text);
+  }
+  .chapter-option:has(input:checked) {
+    border-color: var(--mint);
+    background: #edf9f4;
+  }
+  .chapter-option input[type="checkbox"] {
+    width: auto;
+    margin-top: 2px;
+    flex-shrink: 0;
+    accent-color: var(--green);
+  }
+  .chapter-option .ch-title {
+    font-weight: 500;
+    color: var(--green);
+    display: block;
+  }
+  .chapter-option .ch-sub {
+    color: var(--light-text);
+    font-size: 0.78rem;
+  }
+
+  /* star rating */
+  .star-row {
+    display: flex;
+    gap: 0.4rem;
+  }
+  .star-row input[type="radio"] { display: none; }
+  .star-row label {
+    font-size: 1.8rem;
+    cursor: pointer;
+    color: #cdd8cc;
+    transition: color 0.15s;
+    margin-bottom: 0;
+    font-weight: 400;
+  }
+  .star-row input:checked ~ label,
+  .star-row label:hover,
+  .star-row label:hover ~ label {
+    color: var(--yellow);
+  }
+  .star-row:has(input:checked) label { color: #cdd8cc; }
+  .star-row input:checked ~ label { color: var(--yellow); }
+
+  /* Flip star highlight direction */
+  .star-row { flex-direction: row-reverse; justify-content: flex-end; }
+  .star-row label:hover, .star-row label:hover ~ label { color: var(--yellow); }
+
+  .submit-btn {
+    display: inline-block;
+    background: var(--green);
+    color: var(--white);
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 500;
+    padding: 0.9rem 2.2rem;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.1s;
+    margin-top: 0.4rem;
+  }
+  .submit-btn:hover { background: #163812; }
+  .submit-btn:active { transform: scale(0.98); }
+
+  /* ── WHAT COMES NEXT BLOCK ── */
+  .next-block {
+    background: var(--green);
+    border-radius: 12px;
+    padding: 2rem 2rem 1.8rem;
+    color: var(--white);
+    margin-bottom: 2.4rem;
+  }
+  .next-block h3 {
+    font-family: 'Lora', serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: var(--yellow);
+  }
+  .next-block p {
+    font-size: 0.9rem;
+    line-height: 1.7;
+    color: rgba(255,255,255,0.85);
+    margin-bottom: 1.2rem;
+  }
+  .pill-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  .pill {
+    font-size: 0.78rem;
+    font-weight: 500;
+    color: var(--green);
+    background: var(--mint);
+    border-radius: 20px;
+    padding: 0.35rem 0.9rem;
+    text-decoration: none;
+    transition: opacity 0.15s;
+  }
+  .pill:hover { opacity: 0.85; }
+
+  /* ── SUCCESS STATE ── */
+  .success-state {
+    display: none;
+    text-align: center;
+    padding: 3rem 1rem;
+  }
+  .success-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+  }
+  .success-state h2 {
+    font-family: 'Lora', serif;
+    font-size: 1.5rem;
+    color: var(--green);
+    margin-bottom: 0.75rem;
+  }
+  .success-state p {
+    font-size: 0.95rem;
+    color: var(--light-text);
+    line-height: 1.7;
+    max-width: 480px;
+    margin: 0 auto;
+  }
+
+  /* ── FOOTER ── */
+  .footer {
+    background: var(--green);
+    padding: 1.5rem 2rem;
+    text-align: center;
+  }
+  .footer p {
+    font-size: 0.78rem;
+    color: rgba(255,255,255,0.5);
+  }
+  .footer strong { color: var(--mint); }
+
+  @media (max-width: 600px) {
+    .form-card { padding: 1.6rem 1.2rem; }
+    .main { padding: 2rem 1rem 3rem; }
+  }
+</style>
+</head>
+<body>
+
+<header class="header">
+  <p class="logo-line">The Influence Lab</p>
+  <h1>You read it.<br><em>Now tell me what landed.</em></h1>
+  <p class="header-sub">Modern Learning In A Digital Age &mdash; a reader review</p>
+</header>
+
+<div class="thank-strip">
+  <p>Reading this book is an act of professional courage. Thank you for taking the time.</p>
+</div>
+
+<main class="main">
+
+  <div class="intro-block">
+    <p class="section-label">Why this matters</p>
+    <p>This book took close to eighteen months to write. Every framework, every chapter, every conversation with the contributors in it came from real experience, not theory. What you found useful tells me where the work is resonating, and that shapes what comes next. Take three minutes. Tell me honestly.</p>
+  </div>
+
+  <div class="form-card" id="review-form-wrap">
+    <h2>What did you take from it?</h2>
+
+    <form id="review-form" onsubmit="handleSubmit(event)">
+
+      <div class="field">
+        <label for="reader-name">Your name (optional)</label>
+        <input type="text" id="reader-name" placeholder="First name or leave blank">
+      </div>
+
+      <div class="field">
+        <label for="reader-role">Your role in learning and development</label>
+        <select id="reader-role">
+          <option value="" disabled selected>Select the closest fit</option>
+          <option>L&D Manager or Head of L&D</option>
+          <option>L&D Consultant or Freelancer</option>
+          <option>Training Manager or Coordinator</option>
+          <option>HR Director or People Lead</option>
+          <option>Operations or Senior Leader</option>
+          <option>L&D Practitioner or Facilitator</option>
+          <option>Coach or Mentor</option>
+          <option>Other</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label>Which chapters did you find most useful? (tick all that apply)</label>
+        <div class="chapter-grid">
+          <label class="chapter-option">
+            <input type="checkbox" name="chapters" value="ecosystem">
+            <span><span class="ch-title">The Ecosystem of Learning</span><span class="ch-sub">Ch 2 &mdash; Collective responsibility, forest model</span></span>
+          </label>
+          <label class="chapter-option">
+            <input type="checkbox" name="chapters" value="drift-to-drive">
+            <span><span class="ch-title">The Drift to Drive Framework</span><span class="ch-sub">Ch 3 &mdash; Five stages, the shift from routine to drive</span></span>
+          </label>
+          <label class="chapter-option">
+            <input type="checkbox" name="chapters" value="commercial-courage">
+            <span><span class="ch-title">Commercial Courage</span><span class="ch-sub">Ch 4 &mdash; Business alignment, stakeholder conversations</span></span>
+          </label>
+          <label class="chapter-option">
+            <input type="checkbox" name="chapters" value="relational-courage">
+            <span><span class="ch-title">Relational Courage</span><span class="ch-sub">Ch 5 &mdash; Relationships, psychological safety, trust</span></span>
+          </label>
+          <label class="chapter-option">
+            <input type="checkbox" name="chapters" value="creative-courage">
+            <span><span class="ch-title">Creative Courage</span><span class="ch-sub">Ch 6 &mdash; Design thinking, breaking patterns</span></span>
+          </label>
+          <label class="chapter-option">
+            <input type="checkbox" name="chapters" value="identity-courage">
+            <span><span class="ch-title">Identity Courage</span><span class="ch-sub">Ch 7 &mdash; Professional identity, imposter phenomenon</span></span>
+          </label>
+          <label class="chapter-option">
+            <input type="checkbox" name="chapters" value="deep-courage">
+            <span><span class="ch-title">Deep Courage</span><span class="ch-sub">Ch 8 &mdash; The hardest shift, self regulation</span></span>
+          </label>
+          <label class="chapter-option">
+            <input type="checkbox" name="chapters" value="scoping">
+            <span><span class="ch-title">Stop Taking Orders, Start Asking Questions</span><span class="ch-sub">Ch 13 &mdash; Scoping, fishbone, consulting approach</span></span>
+          </label>
+          <label class="chapter-option">
+            <input type="checkbox" name="chapters" value="adults-learn">
+            <span><span class="ch-title">How Adults Actually Learn</span><span class="ch-sub">Ch 14 &mdash; Andragogy, neuroscience, real application</span></span>
+          </label>
+          <label class="chapter-option">
+            <input type="checkbox" name="chapters" value="evaluation">
+            <span><span class="ch-title">Why Most Evaluation Stops Too Early</span><span class="ch-sub">Ch 16 &mdash; ROI, ROV, measuring what matters</span></span>
+          </label>
+          <label class="chapter-option">
+            <input type="checkbox" name="chapters" value="borrowed-perspective">
+            <span><span class="ch-title">Borrowed Perspective</span><span class="ch-sub">Ch 18 &mdash; Contributor interviews, global voices</span></span>
+          </label>
+          <label class="chapter-option">
+            <input type="checkbox" name="chapters" value="someone-has-to-say-it">
+            <span><span class="ch-title">Someone Has To Say It</span><span class="ch-sub">Introduction &mdash; The honest opener, Sheffield platform 1B</span></span>
+          </label>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="useful-detail">What specifically did you take from that chapter?</label>
+        <textarea id="useful-detail" rows="4" placeholder="A sentence or two is plenty. What shifted for you, or what are you going to try differently?"></textarea>
+      </div>
+
+      <div class="field">
+        <label>How practically aligned do you feel your training team is to working as a collective ecosystem, rather than a siloed function?</label>
+        <select id="collective-alignment">
+          <option value="" disabled selected>Select one</option>
+          <option>Not at all — we operate in silos and that feels normal</option>
+          <option>Starting to shift — there is appetite but no real structure yet</option>
+          <option>Partly there — some collaboration but commercial alignment is weak</option>
+          <option>Mostly there — we work well together but I want more</option>
+          <option>Fully there — we are already working as a connected ecosystem</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label for="barrier">What is the biggest thing in the way of making that shift?</label>
+        <textarea id="barrier" rows="3" placeholder="Be honest. Culture, leadership, structures, your own habits..."></textarea>
+      </div>
+
+      <div class="field">
+        <label>Overall, how would you rate the book?</label>
+        <div class="star-row" role="radiogroup" aria-label="Star rating">
+          <input type="radio" id="s5" name="rating" value="5"><label for="s5" title="5 stars">&#9733;</label>
+          <input type="radio" id="s4" name="rating" value="4"><label for="s4" title="4 stars">&#9733;</label>
+          <input type="radio" id="s3" name="rating" value="3"><label for="s3" title="3 stars">&#9733;</label>
+          <input type="radio" id="s2" name="rating" value="2"><label for="s2" title="2 stars">&#9733;</label>
+          <input type="radio" id="s1" name="rating" value="1"><label for="s1" title="1 star">&#9733;</label>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="testimonial">Anything you would want others to know before they read it? (optional)</label>
+        <textarea id="testimonial" rows="3" placeholder="This may be used as a testimonial on The Influence Lab website and social channels. Leave blank if you prefer not."></textarea>
+      </div>
+
+      <button type="submit" class="submit-btn">Send my review</button>
+
+    </form>
+
+    <div class="success-state" id="success-state">
+      <div class="success-icon">&#10003;</div>
+      <h2>Thank you. That means a lot.</h2>
+      <p>Your review has been received. The work is better because readers like you take it seriously. Keep an eye on LinkedIn for what comes next.</p>
+    </div>
+  </div>
+
+  <div class="next-block">
+    <h3>Want to go deeper?</h3>
+    <p>The Drift to Drive Diagnostic is the companion tool to the book. It maps where you and your team sit across the five stages, and gives you a starting point for the conversations the book asks you to have.</p>
+    <div class="pill-row">
+      <a href="https://the-influencelab.github.io/Modern-L-D-Diagnostic-2026/" class="pill" target="_blank" rel="noopener">Take the Diagnostic</a>
+      <a href="https://www.linkedin.com/in/kay-littlehales-minstsmm-2a434117/" class="pill" target="_blank" rel="noopener">Connect on LinkedIn</a>
+      <a href="https://stan.store/TheInfluenceLab/p/get-my-modern-l--d-in-a-digital-age" class="pill" target="_blank" rel="noopener">Share the book</a>
+      <a href="https://the-influencelab.github.io/Influence-Lab-Website/" class="pill" target="_blank" rel="noopener">The Influence Lab</a>
+    </div>
+  </div>
+
+</main>
+
+<footer class="footer">
+  <p><strong>The Influence Lab</strong> &mdash; Kay Littlehales MInstSMM &mdash; InfluenceL8b@outlook.com</p>
+</footer>
+
+<script>
+  function handleSubmit(e) {
+    e.preventDefault();
+    document.getElementById('review-form').style.display = 'none';
+    document.getElementById('success-state').style.display = 'block';
+    document.getElementById('review-form-wrap').querySelector('h2').style.display = 'none';
+  }
+</script>
+
+</body>
+</html>
